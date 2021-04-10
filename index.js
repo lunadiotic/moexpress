@@ -13,6 +13,20 @@ app.use(express.json())
 // parse request of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({extended: true}))
 
+// Connect Database
+const db = require('./app/models')
+db.mongoose
+    .connect(db.url, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(() => {
+        console.log('Database connected!')
+    }).catch((err) => {
+        console.log("Cannot connect to the database!", err)
+        process.exit()
+    });
+
 app.get('/', (req,res) => {
     res.json({
         message: "Welcome to IDStack Moexpress"
