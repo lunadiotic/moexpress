@@ -7,6 +7,8 @@ module.exports = (app) => {
     router.get('/', posts.findAll)
     // Create
     router.post('/', posts.create)
+    // Show
+    router.get('/:id', posts.findOne)
 
     app.use('/api/posts', router)
 }
