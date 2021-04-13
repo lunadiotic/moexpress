@@ -9,6 +9,8 @@ module.exports = (app) => {
     router.post('/', posts.create)
     // Show
     router.get('/:id', posts.findOne)
+    // Update
+    router.put('/:id', posts.update)
 
     app.use('/api/posts', router)
 }

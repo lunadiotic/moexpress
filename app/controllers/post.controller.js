@@ -52,3 +52,25 @@ exports.findOne = (req, res) => {
         })
     });
 }
+
+exports.update = (req, res) => {
+    const id = req.params.id
+
+    Post.findByIdAndUpdate(id, req.body)
+    .then((result) => {
+        if (!result) {
+            res.status(404).send({
+                message: 'Not found!'
+            })
+        } else {
+            res.send({
+                message: "Post was updated."
+            })
+        }
+    }).catch((err) => {
+        res.status(409).send({
+            message: 
+                err.message || `Cannot update Post with id: ${id}.`
+        })
+    });
+}
